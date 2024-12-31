@@ -50,7 +50,7 @@
         name: mysql
 
     - name: load schema
-      ansible.builtin.shell: mysqldb.olgatechnologies.cloud -uroot -pExpenseApp@1  < /app/schema/backend.sql
+      ansible.builtin.shell: mysql -h mysqldb.olgatechnologies.cloud -uroot -pExpenseApp@1  < /app/schema/backend.sql
 
     - name: Start backend service demon-reload
       ansible.builtin.systemd:
