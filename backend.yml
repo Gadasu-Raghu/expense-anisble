@@ -33,8 +33,30 @@
       ansible.builtin.file:
         path: /app
         state: directory
-#    - name: download_and_extract app content
-#    - name: Start backend service demon-reload
-#    - name: install MYSQL client
-#    - name: load schema
 
+    - name: download_and_extract backend app content
+      ansible.builtin.unarchive:
+        src: https://expense-artifacts.s3.amazonaws.com/backend.zip
+        dest: /app
+        remote_src: yes
+
+    - name: download dependencies
+      ansible.builtin.shell: npm install
+      agrs:
+        chdir: /app
+
+    - name: Start backend service demon-reload
+
+    - name: install MYSQL client
+      ansible.builtin.dnf:
+        name: mysql
+
+    - name: load schema
+      ansible.builtin.shell: mysqldb.olgatechnologies.cloud -uroot -pExpenseApp@1  < /app/schema/backend.sql
+
+    - name: Start backend service demon-reload
+      ansible.builtin.systemd:
+        name: backend
+        state: restart
+        enabled: yes
+        daemon-reload: yes
