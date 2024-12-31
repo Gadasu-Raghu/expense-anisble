@@ -22,7 +22,6 @@
         dest: /tmp/frontend.zip
 
     - name: extract frontend code
-
     - name: starting nginx service
 
 
