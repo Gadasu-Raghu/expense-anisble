@@ -45,8 +45,6 @@
       args:
         chdir: /app
 
-    - name: Start backend service demon-reload
-
     - name: install MYSQL client
       ansible.builtin.dnf:
         name: mysql
