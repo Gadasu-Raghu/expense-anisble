@@ -16,13 +16,16 @@
         path: /usr/share/nginx/html
         state: absent
 
-    - name: download frontend code
-      ansible.builtin.get_url:
-        url: https://expense-artifacts.s3.amazonaws.com/frontend.zip
-        dest: /tmp/frontend.zip
+    - name: download and extract frontend code
+      ansible.builtin.unarchive:
+        src: https://expense-artifacts.s3.amazonaws.com/frontend.zip
+        dest: /usr/share/nginx/html
+        remote_src: yes
 
-#    - name: extract frontend code
-#    - name: starting nginx service
+    - name: starting nginx service
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
 
 
 #here created a variable log_file and calling it whereever it needed as a variable
