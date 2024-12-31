@@ -1,0 +1,25 @@
+- name: expenseapp backend applicaiton
+  hosts: all
+  become: yes
+  tasks:
+    - name: disable nodejs default
+      ansible.builtin.shell: dnf module disable nodejs -y
+      register: disable_nodejs
+
+    - name: Enable Node.js 18 module
+      ansible.builtin.shell: dnf module enable nodejs:18 -y
+      register: enable_nodejs
+
+    - name: Install Node.js
+      ansible.builtin.dnf:
+        name: nodejs
+        state: present
+
+#    - name: Copy Backend Service File
+#    - name: Add Application user
+#    - name: Clean App content
+#    - name: download_and_extract app content
+#    - name: Start backend service demon-reload
+#    - name: install MYSQL client
+#    - name: load schema
+
