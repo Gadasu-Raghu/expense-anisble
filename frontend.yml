@@ -21,8 +21,8 @@
         url: https://expense-artifacts.s3.amazonaws.com/$component.zip
         dest: /tmp/frontend.zip
 
-    - name: extract frontend code
-    - name: starting nginx service
+#    - name: extract frontend code
+#    - name: starting nginx service
 
 
 #here created a variable log_file and calling it whereever it needed as a variable
