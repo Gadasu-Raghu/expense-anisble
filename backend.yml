@@ -42,7 +42,7 @@
 
     - name: download dependencies
       ansible.builtin.shell: npm install
-      agrs:
+      args:
         chdir: /app
 
     - name: Start backend service demon-reload
